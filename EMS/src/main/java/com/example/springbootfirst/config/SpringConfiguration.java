@@ -41,10 +41,10 @@ public class SpringConfiguration {
 
 
 
-//  @Bean
-//  public UserDetailsService userDetailsService() {
-//    return new InMemoryUserDetailsManager(); // Empty = no default user
-//  }
+  @Bean
+  public UserDetailsService userDetailsService() {
+    return new InMemoryUserDetailsManager(); // Empty = no default user
+  }
 
 //  @Bean
 //  UserDetailsService userDetailsService(){
