@@ -38,7 +38,6 @@ public class EmployeeController {
 
     @PostMapping("/employee")
     public String postMethod(@RequestBody Employee employee){
-//        Employee employee = new Employee(5,"Sivagami", "Business");
         return employeeService.addEmployee(employee);
     }
     @PutMapping("/employee")
