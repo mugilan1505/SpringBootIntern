@@ -52,5 +52,30 @@ public class RegisterService {
         RegisterDetails user = userOptional.get();
         return passwordEncoder.matches(rawPassword, user.getPassword());
     }
+    public String updateUser(int empId, UserDetailsDto request) {
+        RegisterDetails existingUser = registerDetailsRepository.findById(empId)
+                .orElse(null);
+        if (existingUser == null) {
+            return "User with ID " + empId + " not found!";
+        }
+        existingUser.setName(request.getName());
+        existingUser.setUserName(request.getUserName());
+        existingUser.setEmail(request.getEmail());
+        if (request.getPassword() != null && !request.getPassword().isEmpty()) {
+            existingUser.setPassword(passwordEncoder.encode(request.getPassword()));
+        }
+        Set<Roles> updatedRoles = new HashSet<>();
+        for (String roleName : request.getRoleNames()) {
+            Roles role = rolesRepository.findByName(roleName)
+                    .orElseThrow(() -> new RuntimeException("Role not found: " + roleName));
+            updatedRoles.add(role);
+        }
+        existingUser.setRoles(updatedRoles);
+        registerDetailsRepository.save(existingUser);
+        return "User updated successfully!";
+    }
 
+    public List<RegisterDetails> getUsersByRole(String roleName) {
+        return registerDetailsRepository.findByRoleName(roleName);
+    }
 }
