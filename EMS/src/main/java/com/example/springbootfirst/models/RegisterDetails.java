@@ -3,6 +3,7 @@ package com.example.springbootfirst.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Collection;
 import java.util.Set;
 
 @Data
@@ -25,4 +26,19 @@ public class RegisterDetails {
           inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName = "roleId")
   )
   private Set<Roles> roles;
+
+    public void setRoles(Set<Roles> updatedRoles) {
+    }
+
+  public Collection<Object> getRoles() {
+      return null;
+  }
+
+  public String getUserName() {
+      return null;
+  }
+
+  public String getPassword() {
+      return null;
+  }
 }

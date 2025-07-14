@@ -18,15 +18,16 @@ public class HelloWorldController {
         return hws.getMethod();
     }
 
-    @PostMapping("/")
+//    @PostMapping("/")002
+
     public List<Employee> postMethod(@RequestBody Employee emp) {
         return hws.postMethod(emp);
     }
 
-    @PutMap ping("/{id}")
-    public List<Employee> putMethod(@PathVariable int id, @RequestBody Employee emp) {
-        return hws.putMethod(id, emp);
-    }
+//    @PutMap ping("/{id}")
+//    public List<Employee> putMethod(@PathVariable int id, @RequestBody Employee emp) {
+//        return hws.putMethod(id, emp);
+//    }
 
     @DeleteMapping("/{id}")
     public List<Employee> deleteById(@PathVariable int id) {
