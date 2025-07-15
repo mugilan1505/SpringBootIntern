@@ -1,4 +1,4 @@
-package net.javaguides.todo.config;
+package com.example.springbootfirst.config;
 
 import lombok.AllArgsConstructor;
 import net.javaguides.todo.security.JwtAuthenticationEntryPoint;
