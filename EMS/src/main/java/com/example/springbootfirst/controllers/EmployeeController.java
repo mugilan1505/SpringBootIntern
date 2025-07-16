@@ -15,18 +15,18 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/")
     public String route(){
         return "Welcome to SpringBoot Security";
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping("/employee")
     public List<Employee> getMethod(){
         return employeeService.getMethod();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/employee/{empID}")
     public Employee getEmployeeById(@PathVariable int empID){
         return employeeService.getEmployeeById(empID);
@@ -39,17 +39,17 @@ public class EmployeeController {
 
     @PostMapping("/employee")
     public String postMethod(@RequestBody Employee employee){
-//        Employee employee = new Employee(5,"Sivagami", "Business");
         return employeeService.addEmployee(employee);
     }
-    @PutMapping("/employee")
-    public String putMethod(@RequestBody Employee employee){
-        return employeeService.updateEmployee(employee);
+
+
+    @PutMapping("/employee/{empID}")
+    public String putMethod(@PathVariable int empID, @RequestBody Employee e){
+        return employeeService.updateEmployeeById(empID,e);
     }
+
     @DeleteMapping("/employee/{empID}")
     public String deleteMethod(@PathVariable int empID){
         return employeeService.deleteEmployeeById(empID);
     }
-
-
 }
